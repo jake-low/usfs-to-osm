@@ -1,5 +1,3 @@
-# USFS to OSM
-
 Python scripts to convert USFS road and trail data to an OSM-compatible schema.
 
 Status:
