@@ -141,10 +141,10 @@ def smoothness(props):
     return SMOOTHNESS_MAP.get(props.get("OPER_MAINT_LEVEL"))
 
 def motor_vehicle(props):
-    if props.get("OPENFORUSETO") != "ALL" or props.get("OPER_MAINT_LEVEL") == "1 - BASIC CUSTODIAL CARE (CLOSED)":
-        return "no"
-    else:
-        return "yes"
+    return not (
+        props.get("OPENFORUSETO") != "ALL"
+        or props.get("OPER_MAINT_LEVEL") == "1 - BASIC CUSTODIAL CARE (CLOSED)"
+    )
 
 def disused(props):
     return props.get("OBJECTIVE_MAINT_LEVEL") == "D - DECOMMISSION"
