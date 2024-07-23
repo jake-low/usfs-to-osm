@@ -18,3 +18,11 @@ trails:
     jq -c '.features[]' TrailNFS.geojson > TrailNFS.ndjson
     python trails-to-osm.py < TrailNFS.ndjson > TrailNFS.osm.ndjson
     jq -cs '{ type: "FeatureCollection", features: . }' TrailNFS.osm.ndjson > TrailNFS.osm.geojson
+
+recsites:
+    ogr2ogr -f GeoJSON -spat_srs EPSG:4326 -spat {{extent}} \
+        RecOpportunities.geojson ~/Downloads/Recreation_Opportunities_\(Feature_Layer\).geojson
+
+    jq -c '.features[]' RecOpportunities.geojson > RecOpportunities.ndjson
+    python recsites-to-osm.py < RecOpportunities.ndjson > RecOpportunities.osm.ndjson
+    jq -cs '{ type: "FeatureCollection", features: . }' RecOpportunities.osm.ndjson > RecOpportunities.osm.geojson
